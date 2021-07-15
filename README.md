@@ -1,6 +1,6 @@
 # Robotics_Project_Mameli_Sivo
 
-robot_model: "uv", "drug"
+robot_model: "uv", "drug", "drug1"
 
 World launch:
 roslaunch robotics world.launch
