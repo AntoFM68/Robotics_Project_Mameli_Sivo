@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<robot name="uv_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+<!-- UV DIFFERENTIAL DRIVE XACRO --> 
+
+    <!-- INCLUDE CYLINDER WHEEL MACRO -->
+    <xacro:include filename="$(find robotics)/urdf/robots/cylinder_wheel.urdf.xacro" />
+    <xacro:include filename="$(find robotics)/urdf/material.xacro" />
+    <xacro:include filename="$(find robotics)/urdf/hokuyo_sensor.xacro" />
+    <xacro:include filename="$(find robotics)/urdf/camera.xacro" />
+
+    <!-- PROPERTY LIST -->
+    <xacro:property name="robot" value="uv" />
+    <!--All units in m-kg-s-radians unit system -->
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="M_PI_2" value="1.570796327" />
+    <xacro:property name="DEG_TO_RAD" value="0.017453293" />
+    <!-- Main Body Cylinder base   -->
+    <xacro:property name="base_height" value="0.2" /> 
+    <xacro:property name="base_radius" value="0.375" /> 
+    <xacro:property name="base_mass" value="5" /> <!-- in kg-->
+    <!-- UV Cylinder body   -->
+    <xacro:property name="uv_height" value="1.25" /> 
+    <xacro:property name="uv_radius" value="0.15" /> 
+    <xacro:property name="uv_mass" value="0.5" /> <!-- in kg-->
+    <!-- caster wheel -->
+    <xacro:property name="caster_radius" value="0.06" /> 
+    <xacro:property name="caster_mass" value="0.5" /> <!-- in kg-->
+
+
+    <!-- MACRO LIST -->
+    <!--define caster wheel macro for tag inertial-->
+    <xacro:macro name="caster_inertial" params="mass">
+        <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </xacro:macro>
+
+    <!-- LINK -->
+    <link name="uv_base_footprint">
+    </link>
+    <joint name="uv_base_footprint_joint" type="fixed">
+        <parent link="uv_base_footprint"/>
+        <child link="uv_base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- BODY -->
+    <link name="uv_base_link">    
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:white/>
+            <geometry>
+                <cylinder length="${base_height}" radius="${base_radius}" />
+            </geometry>
+        </visual>  
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0 " />
+            <geometry>
+                <cylinder length="${base_height}" radius="${base_radius}" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${base_mass}" />
+            <xacro:cylinder_inertia  m="${base_mass}" r="${base_radius}" h="${base_height}" />
+        </inertial>         
+    </link>
+    <gazebo reference="uv_base_link">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- UV BODY -->
+    <link name="uv_link">    
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:cyan/>
+            <geometry>
+                <cylinder length="${uv_height}" radius="${uv_radius}" />
+            </geometry>
+        </visual>  
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0 " />
+            <geometry>
+                <cylinder length="${uv_height}" radius="${uv_radius}" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${uv_mass}" />
+            <xacro:cylinder_inertia  m="${uv_mass}" r="${uv_radius}" h="${uv_height}" />
+        </inertial>         
+    </link>
+    <joint name="uv_joint" type="fixed">
+        <parent link="uv_base_link"/>
+        <child link="uv_link"/>
+        <origin xyz="0 0 0.625" rpy="0 0 0"/>
+    </joint>
+    <gazebo reference="uv_link">
+        <material>Gazebo/BlueGlow</material>
+    </gazebo>
+
+    <!-- WHEELS -->
+    <xacro:cylinder_wheel lr="right" parent="uv_base_link" robot="${robot}" translateX="0" translateY="-1" flipY="1"/>
+    <xacro:cylinder_wheel lr="left" parent="uv_base_link" robot="${robot}" translateX="0" translateY="1" flipY="1"/>
+
+    <!-- CASTER FRONT WHEEL-->
+    <link name="uv_caster_front_wheel">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:grey/>
+            <geometry>
+                <sphere radius="${caster_radius}" />
+            </geometry>
+        </visual>  
+        <collision>
+            <geometry>
+                <sphere radius="${caster_radius}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>      
+        <xacro:caster_inertial mass="0.5"/>
+    </link>
+    <joint name="uv_caster_front_wheel_joint" type="fixed">
+        <parent link="uv_base_link"/>
+        <child link="uv_caster_front_wheel"/>
+        <origin xyz="0.3 0 -0.085" rpy="0 0 0"/>
+    </joint>
+    <gazebo reference="uv_caster_front_wheel">
+        <material>Gazebo/GreyTransparent</material>
+    </gazebo>
+
+    <!-- CASTER BACK WHEEL-->
+    <link name="uv_caster_back_wheel">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:grey/>
+            <geometry>
+                <sphere radius="${caster_radius}" />
+            </geometry>
+        </visual>  
+        <collision>
+            <geometry>
+                <sphere radius="${caster_radius}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>      
+        <xacro:caster_inertial mass="0.5"/>
+    </link>
+    <joint name="uv_caster_back_wheel_joint" type="fixed">
+        <parent link="uv_base_link"/>
+        <child link="uv_caster_back_wheel"/>
+        <origin xyz="-0.3 0 -0.085" rpy="0 0 0"/>
+    </joint>
+    <gazebo reference="uv_caster_back_wheel">
+        <material>Gazebo/GreyTransparent</material>
+    </gazebo>
+
+    <!-- SENSORS -->
+    <!-- Hokuyo -->
+    <xacro:hokuyo base_radius="${base_radius}" base_height="${base_height}" robot="${robot}"/>
+    <!-- Camera -->
+    <xacro:camera base_radius="${base_radius}" base_height="${base_height}" robot="${robot}"/>
+
+    <!-- Gazebo plugin for ROS Control -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <controlPeriod>0.001</controlPeriod>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+            <legacyModeNS>true</legacyModeNS>
+        </plugin>
+    </gazebo>
+
+    <!-- Gazebo plugin for differential drive controller -->
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <legacyMode>true</legacyMode>
+            <rosDebugLevel>na</rosDebugLevel>
+            <alwaysOn>true</alwaysOn>
+
+            <publishTf>true</publishTf>
+            <broadcastTF>true</broadcastTF>
+            <publishOdomTF>true</publishOdomTF>
+            <publishWheelTF>false</publishWheelTF>
+            <publishWheelJointState>false</publishWheelJointState>
+
+            <wheelSeparation>${2*base_radius}</wheelSeparation>
+            <wheelDiameter>${2*wheel_radius}</wheelDiameter>
+            <updateRate>30.0</updateRate>
+            <wheelTorque>30</wheelTorque>
+            <wheelAcceleration>1.8</wheelAcceleration>
+
+            <commandTopic>/cmd_vel</commandTopic>
+            <odometryTopic>/odom</odometryTopic>
+            <odometryFrame>uv_odom</odometryFrame> 
+            <odometrySource>world</odometrySource>
+            <robotBaseFrame>uv_base_footprint</robotBaseFrame>
+        </plugin>
+    </gazebo> 
+ 
+</robot>

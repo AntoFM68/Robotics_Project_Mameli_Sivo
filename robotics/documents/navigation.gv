@@ -1,0 +1,36 @@
+digraph G {
+"drug_odom" -> "drug_base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 73.799\nOldest transform: 68.833\n"];
+"map" -> "drug_odom"[label=" Broadcaster: /drug/amcl\nAverage rate: 28.03\nBuffer length: 4.959\nMost recent transform: 74.284\nOldest transform: 69.325\n"];
+"drug_base_link" -> "drug_left_wheel"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 20.137\nBuffer length: 4.966\nMost recent transform: 73.799\nOldest transform: 68.833\n"];
+"drug_base_footprint" -> "drug_base_link"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug_base_link" -> "drug_right_wheel"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 20.137\nBuffer length: 4.966\nMost recent transform: 73.799\nOldest transform: 68.833\n"];
+"drug_base_link" -> "box_link"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug_base_link" -> "drug_camera_link"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug_base_link" -> "drug_caster_back_wheel"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug_base_link" -> "drug_caster_front_wheel"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug_base_link" -> "drug_hokuyo_link"[label=" Broadcaster: /drug/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_base_link" -> "box1_link"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_base_footprint" -> "drug1_base_link"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_odom" -> "drug1_base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 73.812\nOldest transform: 68.845\n"];
+"drug1_base_link" -> "drug1_camera_link"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_base_link" -> "drug1_caster_back_wheel"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_base_link" -> "drug1_caster_front_wheel"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"drug1_base_link" -> "drug1_hokuyo_link"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_base_footprint" -> "uv_base_link"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_odom" -> "uv_base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 73.815\nOldest transform: 68.849\n"];
+"uv_base_link" -> "uv_camera_link"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_base_link" -> "uv_caster_back_wheel"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_base_link" -> "uv_caster_front_wheel"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_base_link" -> "uv_hokuyo_link"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"uv_base_link" -> "uv_link"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"map" -> "drug1_odom"[label=" Broadcaster: /drug1/amcl\nAverage rate: 25.6\nBuffer length: 4.961\nMost recent transform: 74.289\nOldest transform: 69.328\n"];
+"map" -> "uv_odom"[label=" Broadcaster: /uv/amcl\nAverage rate: 29.477\nBuffer length: 4.987\nMost recent transform: 74.311\nOldest transform: 69.324\n"];
+"uv_base_link" -> "uv_left_wheel"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 20.137\nBuffer length: 4.966\nMost recent transform: 73.815\nOldest transform: 68.849\n"];
+"uv_base_link" -> "uv_right_wheel"[label=" Broadcaster: /uv/robot_state_publisher_nav\nAverage rate: 20.137\nBuffer length: 4.966\nMost recent transform: 73.815\nOldest transform: 68.849\n"];
+"drug1_base_link" -> "drug1_left_wheel"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 20.214\nBuffer length: 4.947\nMost recent transform: 73.826\nOldest transform: 68.879\n"];
+"drug1_base_link" -> "drug1_right_wheel"[label=" Broadcaster: /drug1/robot_state_publisher_nav\nAverage rate: 20.214\nBuffer length: 4.947\nMost recent transform: 73.826\nOldest transform: 68.879\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 73.882"[ shape=plaintext ] ;
+}->"map";
+}

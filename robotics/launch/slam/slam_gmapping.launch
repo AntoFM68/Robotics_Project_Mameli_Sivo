@@ -1,0 +1,66 @@
+<launch>
+
+    <!-- Robot model: uv - drug - drug1 -->
+    <arg name="robot" default="uv"/>
+    <!-- Robot pose -->
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.15"/>
+    <arg name="Y" default="3.14"/>
+        
+    <!-- Arguments -->
+    <arg name="set_base_frame"  default="$(arg robot)_base_footprint"/>
+    <arg name="set_odom_frame"  default="$(arg robot)_odom"/>
+    <arg name="set_map_frame"  default="map"/>
+
+    <!-- Include world launch -->
+    <include file="$(find robotics)/launch/gazebo/world.launch"/>
+    
+    <!-- Include robot launch -->
+    <include file="$(find robotics)/launch/gazebo/robot.launch">
+        <arg name="robot" value="$(arg robot)" />
+        <arg name="x" value="$(arg x)" />
+        <arg name="y" value="$(arg y)" />
+        <arg name="z" value="$(arg z)" />
+        <arg name="Y" value="$(arg Y)" />
+    </include>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam command="load" file="$(find robotics)/config/$(arg robot)_robot.yaml" />
+
+    <!-- load the controllers in Gazebo -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="joint_state_controller
+            diffdrive_controller"/>
+
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher_slam">
+        <param name="use_gui" value="False"/>
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>  
+
+    <!--Publish robot state and transforms-->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_slam">
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+  
+    <!-- Gmapping -->
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <param name="base_frame" value="$(arg set_base_frame)"/>
+        <param name="odom_frame" value="$(arg set_odom_frame)"/>
+        <param name="map_frame" value="$(arg set_map_frame)"/>
+        <remap from="/odom" to="/diffdrive_controller/odom"/>
+        <remap from="/scan" to="/$(arg robot)/hokuyo_sensor/scan"/>
+        <rosparam command="load" file="$(find robotics)/config/gmapping.yaml" />
+    </node>
+
+    <!--Launch rviz-->
+    <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find robotics)/rviz/$(arg robot)_gmapping.rviz">
+    </node>
+
+    <!-- Include teleop keyboard launch
+    <include file="$(find robotics)/launch/teleop/teleop_key.launch">
+        <arg name="robot" value="$(arg robot)" />
+    </include> -->
+
+</launch>

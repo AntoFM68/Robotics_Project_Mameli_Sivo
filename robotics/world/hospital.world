@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6">
+    <world name="world">
+        <gui>
+            <camera name="user_camera">
+                <pose>-24.25 -0.6 21.6 0 0.9 0.7</pose>
+            </camera>
+        </gui>
+        <scene>
+            <grid>false</grid>
+            <shadows>false</shadows>
+        </scene>
+        <light type="directional" name="sun">
+            <pose>0 0 1000 0 0 0</pose>
+            <cast_shadows>true</cast_shadows>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.00</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+        </light>
+        <gravity>0 0 -9.8</gravity>
+        <physics default="0" name="default_physics" type="ode">
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1</real_time_factor>
+            <real_time_update_rate>1000</real_time_update_rate>
+        </physics>
+
+        <model name="aws_robomaker_hospital_floor_01_floor_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_floor_01_floor</uri>
+            </include>
+            <pose>-9.988931 29.958378 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_floor_01_walls_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_floor_01_walls</uri>
+            </include>
+            <pose>-10.013823 29.986217 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_nursesstation_01_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_nursesstation_01</uri>
+            </include>
+            <pose>-10 31.5 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_elevator_01_portal_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_elevator_01_portal</uri>
+            </include>
+            <pose>-11.50654 49.4813 0.19 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_elevator_01_portal_2">
+            <include>
+                <uri>model://aws_robomaker_hospital_elevator_01_portal</uri>
+            </include>
+            <pose>-8.48866 49.487 0.19 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_elevator_01_door_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_elevator_01_door</uri>
+            </include>
+            <pose>-11.51 49.35 0.19 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_elevator_01_door_2">
+            <include>
+                <uri>model://aws_robomaker_hospital_elevator_01_door</uri>
+            </include>
+            <pose>-8.47157 49.3627 0.19 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_half_open_01_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_half_open_01</uri>
+            </include>
+            <pose>-21.0216 16.1931 0 0 -0 1.55358</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_closed_01_1">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_closed_01</uri>
+            </include>
+            <pose>-21.022 22.72243 0 0 -0 1.57907</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_half_open_01_5">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_half_open_01</uri>
+            </include>
+            <pose>-21.0332 12.39 0 0 -0 1.55358</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_half_open_01_6">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_half_open_01</uri>
+            </include>
+            <pose>-21.0086 8.2434 0 0 -0 1.55358</pose>
+        </model>
+
+        <model name="StorageRack_1">
+            <include>
+                <uri>model://StorageRack</uri>
+            </include>
+            <pose>-0.92995 19.6418 -7.54989e+08 -2e-06 0 0</pose>
+        </model>
+
+        <model name="VisitorChair_1">
+            <include>
+                <uri>model://VisitorChair</uri>
+            </include>
+            <pose>-10.0052 29.213039 0 0 -0 0</pose>
+        </model>
+
+        <model name="InstrumentCart1_1">
+            <include>
+                <uri>model://InstrumentCart1</uri>
+            </include>
+            <pose>-21.6115 17.7574 0 0 -0 0</pose>
+        </model>
+
+        <model name="OpScrubs_1">
+            <include>
+                <uri>model://OpScrubs</uri>
+            </include>
+            <pose>-19.61916 17.4888 0 0 -0 0</pose>
+        </model>
+
+        <model name="OpScrubs_2">
+            <include>
+                <uri>model://OpScrubs</uri>
+            </include>
+            <pose>-9.945403 34.05849 0 0 -0 3.12413</pose>
+        </model>
+
+        <model name="PatientWheelChair_1">
+            <include>
+                <uri>model://PatientWheelChair</uri>
+            </include>
+            <pose>-15.46091 31.23577 0 0 -0 0</pose>
+        </model>
+
+        <model name="OpScrubs_3">
+            <include>
+                <uri>model://OpScrubs</uri>
+            </include>
+            <pose>-15.38513 31.82526 0 0 -0 0</pose>
+        </model>
+
+        <model name="WhiteChipChair_1">
+            <include>
+                <uri>model://WhiteChipChair</uri>
+            </include>
+            <pose>-18.87142 39.15707 -7.54989e+08 0 -0.152685 0</pose>
+        </model>
+
+        <model name="TrolleyBed_1">
+            <include>
+                <uri>model://TrolleyBed</uri>
+            </include>
+            <pose>-5.14066 25.12771 -7.54989e+08 0 -1e-06 0</pose>
+        </model>
+
+        <model name="CGMClassic_3">
+            <include>
+                <uri>model://CGMClassic</uri>
+            </include>
+            <pose>-21.2304 8.8866 0 0 -0 1.56641</pose>
+        </model>
+
+        <model name="PotatoChipChair_1">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-17.9025 36.49258 0 0 -0 0</pose>
+        </model>
+
+        <model name="PotatoChipChair_2">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-17.89464 38.01997 0 0 -0 0</pose>
+        </model>
+
+        <model name="PotatoChipChair_3">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-16.39087 36.45458 0 0 0 -3.13096</pose>
+        </model>
+
+        <model name="PotatoChipChair_4">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-16.41405 38.00716 0 0 0 -3.13096</pose>
+        </model>
+
+        <model name="VisitorKidSit_1">
+            <include>
+                <uri>model://VisitorKidSit</uri>
+            </include>
+            <pose>-17.69163 36.9857 0 0 -0 1.56778</pose>
+        </model>
+
+        <model name="FemaleVisitorSit_1">
+            <include>
+                <uri>model://FemaleVisitorSit</uri>
+            </include>
+            <pose>-17.61435 37.50057 0 0 -0 1.60052</pose>
+        </model>
+
+        <model name="PotatoChipChair_9">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-1.81067 36.61196 0 0 -0 3.13621</pose>
+        </model>
+
+        <model name="PotatoChipChair_10">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-1.81061 38.16786 0 0 -0 3.13621</pose>
+        </model>
+
+        <model name="PotatoChipChair_11">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-3.19719 36.60106 0 0 -0 0</pose>
+        </model>
+
+        <model name="PotatoChipChair_12">
+            <include>
+                <uri>model://PotatoChipChair</uri>
+            </include>
+            <pose>-3.19719 38.1542 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_CoffeeTable_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_CoffeeTable_01</uri>
+            </include>
+            <pose>-20.2383 0.0856 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_Sofa_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_Sofa_01</uri>
+            </include>
+            <pose>-21.077 -0.5544 -1e-05 2.6e-05 -3e-06 1.56983</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_TV_02_1">
+            <include>
+                <uri>model://aws_robomaker_residential_TV_02</uri>
+            </include>
+            <pose>-22.4122 1.5406 1.53211 0 -0 3.13999</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_KitchenCabinet_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_KitchenCabinet_01</uri>
+            </include>
+            <pose>-21.1379 4.3059 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_Refrigerator_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_Refrigerator_01</uri>
+            </include>
+            <pose>-19.28238 5.4985 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_SofaB_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_SofaB_01</uri>
+            </include>
+            <pose>-20.8238 1.3338 -0 -3e-06 -3e-06 -1.56116</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_SofaB_01_2">
+            <include>
+                <uri>model://aws_robomaker_residential_SofaB_01</uri>
+            </include>
+            <pose>-19.73698 1.3462 -5e-06 2.3e-05 -5e-06 -1.56078</pose>
+        </model>
+
+        <model name="OfficeChairBlack_2">
+            <include>
+                <uri>model://OfficeChairBlack</uri>
+            </include>
+            <pose>-11.25321 23.5495 0 0 -0 3.13125</pose>
+        </model>
+        
+        <model name="AdjTable_2">
+            <include>
+                <uri>model://AdjTable</uri>
+            </include>
+            <pose>-11.26728 24.30774 0 0 0 -0.008733</pose>
+        </model>
+
+        <model name="ElderLadyPatient_1">
+            <include>
+                <uri>model://ElderLadyPatient</uri>
+            </include>
+            <pose>-20.9972 30.231354 0.001655 0 -1e-06 0</pose>
+        </model>
+
+        <model name="ElderLadyPatient_2">
+            <include>
+                <uri>model://ElderLadyPatient</uri>
+            </include>
+            <pose>-20.8133 16.4075 0.001656 0 -0 -0.025052</pose>
+        </model>
+
+        <model name="CGMClassic_4">
+            <include>
+                <uri>model://CGMClassic</uri>
+            </include>
+            <pose>-21.0878 22.99008 0 0 -0 1.56296</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_Trash_01_2">
+            <include>
+                <uri>model://aws_robomaker_residential_Trash_01</uri>
+            </include>
+            <pose>-10.436645 23.42242 0.000903 1e-06 1e-06 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_Trash_01_3">
+            <include>
+                <uri>model://aws_robomaker_residential_Trash_01</uri>
+            </include>
+            <pose>-22.1773 2.3707 0.000903 -2e-06 -0 0</pose>
+        </model>
+
+        <model name="InstrumentCart1_2">
+            <include>
+                <uri>model://InstrumentCart1</uri>
+            </include>
+            <pose>-21.8071 13.8175 0 0 -0 1.56702</pose>
+        </model>
+
+        <model name="ElderMalePatient_1">
+            <include>
+                <uri>model://ElderMalePatient</uri>
+            </include>
+            <pose>-21.1165 12.7623 0.001655 0 2e-06 0</pose>
+        </model>
+
+        <model name="InstrumentCart2_1">
+            <include>
+                <uri>model://InstrumentCart2</uri>
+            </include>
+            <pose>-22.0906 28.12671 0.051875 0 -0 1.57773</pose>
+        </model>
+        
+        <model name="InstrumentCart2_2">
+            <include>
+                <uri>model://InstrumentCart2</uri>
+            </include>
+            <pose>-21.5231 31.34237 0 0 -0 0</pose>
+        </model>
+
+        <model name="aws_robomaker_residential_Carpet_01_1">
+            <include>
+                <uri>model://aws_robomaker_residential_Carpet_01</uri>
+            </include>
+            <pose>-20.7338 0.0757 0 0 -0 0</pose>
+        </model>
+
+        <model name="BedTable_1">
+            <include>
+                <uri>model://BedTable</uri>
+            </include>
+            <pose>-20.4759 31.39442 0.001186 0 2e-06 0</pose>
+        </model>
+
+        <model name="BedTable_2">
+            <include>
+                <uri>model://BedTable</uri>
+            </include>
+            <pose>-20.9732 27.33895 0.001182 0 -0 -0.017818</pose>
+        </model>
+
+        <model name="BedTable_3">
+            <include>
+                <uri>model://BedTable</uri>
+            </include>
+            <pose>-20.5874 17.4916 0.001189 0 -0 3.11588</pose>
+        </model>
+
+        <model name="BedsideTable_1">
+            <include>
+                <uri>model://BedsideTable</uri>
+            </include>
+            <pose>-22.0922 27.38757 0.000179 1e-06 -0 0.05292</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_half_open_01_7">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_half_open_01</uri>
+            </include>
+            <pose>-21.0426 30.066126 0 0 -0 1.56614</pose>
+        </model>
+
+        <model name="aws_robomaker_hospital_curtain_half_open_01_8">
+            <include>
+                <uri>model://aws_robomaker_hospital_curtain_half_open_01</uri>
+            </include>
+            <pose>-21.0309 26.24855 0 0 -0 1.56614</pose>
+        </model>
+
+        <model name="KitchenSink_2">
+            <include>
+                <uri>model://KitchenSink</uri>
+            </include>
+            <pose>-13.09305 18.1012 -0.001619 -0 -0 -0</pose>
+        </model>
+
+        <model name="Toilet_2">
+            <include>
+                <uri>model://Toilet</uri>
+            </include>
+            <pose>-10.54552 18.1967 0.000387 0 -0 -3.139</pose>
+        </model>
+
+        <model name="Toilet_4">
+            <include>
+                <uri>model://Toilet</uri>
+            </include>
+            <pose>-17.01185 31.4183 0.000377 0 0 -3.13589</pose>
+        </model>
+
+        <model name="Toilet_5">
+            <include>
+                <uri>model://Toilet</uri>
+            </include>
+            <pose>-17.02851 17.2272 0.000386 -1e-06 -0 -3.13589</pose>
+        </model>
+
+        <model name="MaleVisitorOnPhone_1">
+            <include>
+                <uri>model://MaleVisitorOnPhone</uri>
+            </include>
+            <pose>-10.760316 37.58474 0 0 0 -1.14974</pose>
+        </model>
+
+        <model name="FemaleVisitor_1">
+            <include>
+                <uri>model://FemaleVisitor</uri>
+            </include>
+            <pose>-9.583165 37.44353 0 0 -0 0</pose>
+        </model>
+
+        <model name="StorageRack_3">
+            <include>
+                <uri>model://StorageRack</uri>
+            </include>
+            <pose>-20.1178 19.5306 -0 0 -0 0</pose>
+        </model>
+
+        <model name="StorageRack_4">
+            <include>
+                <uri>model://StorageRack</uri>
+            </include>
+            <pose>-19.91557 33.5644 -8e-06 0 3e-06 -0.000273</pose>
+        </model>
+
+        <model name="FemaleVisitorSit_2">
+            <include>
+                <uri>model://FemaleVisitorSit</uri>
+            </include>
+            <pose>-2.14995 36.59766 0 0 0 -1.5621</pose>
+        </model>
+
+        <model name="ElderMalePatient_2">
+            <include>
+                <uri>model://ElderMalePatient</uri>
+            </include>
+            <pose>-21.4089 26.43256 0.001654 0 0 -0.009674</pose>
+        </model>
+
+    </world>
+</sdf>

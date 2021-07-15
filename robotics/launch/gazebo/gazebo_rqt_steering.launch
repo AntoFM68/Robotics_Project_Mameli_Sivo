@@ -1,0 +1,48 @@
+<launch>
+
+    <!-- Robot model: uv - drug - drug1 -->
+    <arg name="robot" default="uv"/>
+    <!-- Robot pose -->
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.15"/>
+    <arg name="Y" default="3.14"/>
+
+    <!-- Include world launch -->
+    <include file="$(find robotics)/launch/gazebo/world.launch"/>
+
+    <!-- Include robot launch -->
+    <include file="$(find robotics)/launch/gazebo/robot.launch">
+        <arg name="robot" value="$(arg robot)" />
+        <arg name="x" value="$(arg x)" />
+        <arg name="y" value="$(arg y)" />
+        <arg name="z" value="$(arg z)" />
+        <arg name="Y" value="$(arg Y)" />
+    </include>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam command="load" file="$(find robotics)/config/$(arg robot)_robot.yaml" />
+
+    <!-- load the controllers in Gazebo -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="joint_state_controller
+            diffdrive_controller"/>
+            
+    <!-- convert joint states to TF transforms  -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+        <param name="use_gui" value="False"/>
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node> 
+
+    <node name="robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+        <param name="default_topic" value="/diffdrive_controller/cmd_vel"/>
+    </node>
+
+    <!-- RVIZ -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robotics)/rviz/$(arg robot)_model.rviz" required="true" /> -->
+
+</launch>

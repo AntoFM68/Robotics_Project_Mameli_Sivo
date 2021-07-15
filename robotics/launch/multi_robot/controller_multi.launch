@@ -1,0 +1,15 @@
+<launch>
+
+    <!-- Robot model: uv - drug - drug1 -->
+    <arg name="robot" default="uv"/>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam command="load" file="$(find robotics)/config/robot_multi.yaml" />
+
+    <!-- load the controllers in Gazebo -->
+    <node name="controller_spawner_$(arg robot)" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg robot)"
+        args="--timeout 0
+            $(arg robot)_joint_state_controller
+            $(arg robot)_diffdrive_controller"/>
+
+</launch>

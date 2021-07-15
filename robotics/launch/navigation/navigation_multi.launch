@@ -1,0 +1,63 @@
+<launch>
+    
+    <!-- Robot model: uv - drug - drug1 -->
+    <arg name="robot" default="uv"/>
+    <!-- Robot pose -->
+    <arg name="x" default="-19.0"/>
+    <arg name="y" default="11.0"/>
+    <arg name="z" default="0.15"/>
+    <arg name="Y" default="1.57"/>
+
+    <group ns="$(arg robot)">
+        <!-- Include robot launch -->
+        <include file="$(find robotics)/launch/gazebo/robot.launch">
+            <arg name="robot" value="$(arg robot)" />
+            <arg name="x" value="$(arg x)" />
+            <arg name="y" value="$(arg y)" />
+            <arg name="z" value="$(arg z)" />
+            <arg name="Y" value="$(arg Y)" />
+        </include>
+
+        <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher_slam">
+            <param name="use_gui" value="False"/>
+            <param name="publish_frequency" type="double" value="30.0" />
+        </node>  
+
+        <!--Publish robot state and transforms-->
+        <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_nav">
+            <param name="publish_frequency" type="double" value="30.0" />
+        </node>     
+
+        <!-- AMCL -->
+        <node pkg="amcl" type="amcl" name="amcl">
+            <param name="initial_pose_x" value="$(eval -1*arg('x'))"/>
+            <param name="initial_pose_y" value="$(eval -1*arg('y'))"/>
+            <param name="initial_pose_a"  value="$(eval 3.14+arg('Y'))"/>
+            <param name="base_frame_id" value="$(arg robot)_base_footprint"/>
+            <param name="odom_frame_id" value="$(arg robot)_odom"/>
+            <rosparam command="load" file="$(find robotics)/config/navigation.yaml" />
+            <remap from="/$(arg robot)/scan" to="/$(arg robot)/hokuyo_sensor/scan"/>
+            <remap from="/$(arg robot)/map" to="/map" />
+            <remap from="/$(arg robot)/static_map" to="/static_map"/>
+        </node>
+        
+        <!-- move_base -->
+        <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+            <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+            <rosparam file="$(find robotics)/params/costmap_common_params_$(arg robot).yaml" command="load" ns="global_costmap" />
+            <rosparam file="$(find robotics)/params/costmap_common_params_$(arg robot).yaml" command="load" ns="local_costmap" />
+            <rosparam file="$(find robotics)/params/local_costmap_params_$(arg robot).yaml" command="load" />
+            <rosparam file="$(find robotics)/params/global_costmap_params_$(arg robot).yaml" command="load" />
+            <rosparam file="$(find robotics)/params/move_base_params.yaml" command="load" />
+            <rosparam file="$(find robotics)/params/dwa_local_planner_params.yaml" command="load" />
+            <remap from="/$(arg robot)/odom" to="/$(arg robot)/$(arg robot)_diffdrive_controller/odom"/>
+            <remap from="/$(arg robot)/cmd_vel" to="/$(arg robot)/$(arg robot)_diffdrive_controller/cmd_vel"/>
+            <remap from="/$(arg robot)/map" to="/map" />
+        </node>
+    </group>   
+
+    <include file="$(find robotics)/launch/multi_robot/controller_multi.launch">
+        <arg name="robot" value="$(arg robot)" />
+    </include> 
+
+</launch>

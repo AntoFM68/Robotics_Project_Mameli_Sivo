@@ -1,0 +1,13 @@
+<launch>
+
+    <!-- Robot model: uv - drug - drug1 -->
+    <arg name="robot" default="uv"/>
+
+    <arg name="model" default="$(find robotics)/urdf/robots/$(arg robot)_robot.xacro"/>
+    <param name="model" value="$(arg model)"/>
+  
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
+        <remap from="/cmd_vel" to="/diffdrive_controller/cmd_vel"/>
+    </node>
+
+</launch>
