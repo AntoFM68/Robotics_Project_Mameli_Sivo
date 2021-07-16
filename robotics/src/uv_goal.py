@@ -34,8 +34,8 @@ if __name__ == '__main__':
             tt=Trajectory_tracking()
             tt.trajectory_generation(5, 2, -0.5)
             tt.unicycle_linearized_control()
-            uv_circ = 0   # for following the cyrcular trajectory only one time
-            rospy.loginfo("UV cyrcular trajectory done!")
+            uv_circ = 0   # for following the circular trajectory only one time
+            rospy.loginfo("UV circular trajectory done!")
 
         x_first = 19
         y_first = -28
