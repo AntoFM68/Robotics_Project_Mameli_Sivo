@@ -22,3 +22,12 @@ roslaunch robotics slam_gmapping.launch robot:="robot_model"
 
 Navigation launch:
 roslaunch robotics navigation.launch robot:="robot_model"
+
+Multi Navigation:
+roslaunch robotics map_rviz_multi.launch
+roslaunch robotics navigation_multi.launch
+roslaunch robotics navigation_multi.launch robot:="drug" x:="-5" y:="-1"
+roslaunch robotics navigation_multi.launch robot:="drug1" x:="-4" y:="-1"
+roslaunch robotics TF_multi.launch
+rosrun robotics uv_goal.py
+rosrun robotics drug_LF.py
