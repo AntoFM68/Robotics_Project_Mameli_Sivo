@@ -46,7 +46,7 @@ class Trajectory_tracking():
         return theta
 
 
-    def cyrcular_trajectory(self, t_max, x_c, y_c):
+    def circular_trajectory(self, t_max, x_c, y_c):
         t = np.linspace(0, t_max, 1000)
         R = 1
         v_d_val = 0.7           # [m/s], const linear vel
@@ -66,7 +66,7 @@ class Trajectory_tracking():
         
 
     def trajectory_generation(self, time, x_c, y_c):
-        (self.x_d, self.y_d, self.v_d, self.w_d, self.theta_d, self.dotx_d, self.doty_d, self.t) = self.cyrcular_trajectory(time, x_c, y_c)
+        (self.x_d, self.y_d, self.v_d, self.w_d, self.theta_d, self.dotx_d, self.doty_d, self.t) = self.circular_trajectory(time, x_c, y_c)
 
 
     def get_pose(self):
