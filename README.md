@@ -4,7 +4,7 @@
 "uv", "drug", "drug1"
 
 **World launch:**
-roslaunch robotics world.launch
+'roslaunch robotics world.launch'
 
 **Robot Rviz launch:**
 roslaunch robotics rviz_robot.launch robot:="robot_model"
