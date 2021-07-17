@@ -52,15 +52,10 @@
         <remap from="/scan" to="/$(arg robot)/hokuyo_sensor/scan"/>
         <rosparam command="load" file="$(find robotics)/config/gmapping.yaml" />
     </node>
-
-    <!--Launch rviz-->
-    <node pkg="rviz" type="rviz" name="rviz"
-        args="-d $(find robotics)/rviz/$(arg robot)_gmapping.rviz">
-    </node>
-
-    <!-- Include teleop keyboard launch
+    
+    <!-- Include teleop keyboard launch -->
     <include file="$(find robotics)/launch/teleop/teleop_key.launch">
         <arg name="robot" value="$(arg robot)" />
-    </include> -->
+    </include> 
 
 </launch>
