@@ -1,9 +1,9 @@
-#Publish all joint state
+# Publish all joint state
 joint_state_controller:
   type: "joint_state_controller/JointStateController"
   publish_rate: 30
 
-#Differential drive controller
+# Differential drive controller
 diffdrive_controller:
   type: "diff_drive_controller/DiffDriveController"
   publish_rate: 30
