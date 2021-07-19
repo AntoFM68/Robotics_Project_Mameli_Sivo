@@ -32,7 +32,6 @@ if __name__ == '__main__':
     rospy.init_node('tf2_drug_listener')
  
     tfBuffer = tf2_ros.Buffer()
-    listener = tf2_ros.TransformListener(tfBuffer)
 
     drug_velocity = rospy.Publisher('/drug1/drug1_diffdrive_controller/cmd_vel', geometry_msgs.msg.Twist, queue_size=1)
     
