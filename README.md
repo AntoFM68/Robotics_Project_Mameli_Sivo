@@ -38,4 +38,4 @@
 
 `rosrun robotics uv_goal.py`
 
-`rosrun robotics drug_LF.py`
+`rosrun robotics drug_goal.py`
